@@ -2,7 +2,7 @@
 
 ## 安装
 ```bash
-coomposer require mu/juyuan
+composer require mu/juyuan
 ```
 
 
