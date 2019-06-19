@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Mu\\Juyuan\\": "src/Mu/Juyuan"
+            "Mu\\Juyuan\\": "./src"
         }
     }
 }

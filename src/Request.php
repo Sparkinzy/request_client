@@ -1,9 +1,6 @@
 <?php
 
 namespace Mu\Juyuan;
-
-require_once __DIR__ . '/../../../vendor/autoload.php';
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
