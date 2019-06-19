@@ -34,7 +34,11 @@ class Request {
 	 */
 	public static function get($params = array())
 	{
-		self::check_params($params);
+		try{
+			self::check_params($params);
+		}catch (\Exception $e){
+			return (object) ['code'=>500,'msg'=>$e->getMessage()];
+		}
 		$action = $params['action'];
 		unset($params['action']);
 		$request_uri = '/' . str_replace('.', '/', $action);
@@ -50,7 +54,11 @@ class Request {
 	 */
 	public static function post($params = array())
 	{
-		self::check_params($params);
+		try{
+			self::check_params($params);
+		}catch (\Exception $e){
+			return (object) ['code'=>500,'msg'=>$e->getMessage()];
+		}
 		$action = $params['action'];
 		unset($params['action']);
 		$request_uri = '/' . str_replace('.', '/', $action);
