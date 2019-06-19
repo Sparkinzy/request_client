@@ -1,5 +1,11 @@
 # Request
 
+## 安装
+```bash
+coomposer require mu/juyuan
+```
+
+
 ## 用法
 
 ```php
