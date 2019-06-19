@@ -2,6 +2,7 @@
     "name": "mu/juyuan",
     "description": "use for jybc api request",
     "type": "library",
+    "license" : "MIT",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "php": ">=5.5"
