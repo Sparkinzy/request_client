@@ -79,7 +79,7 @@ class MultiRequest {
 			'fulfilled'   => function ($response, $index) {
 				$res = $response->getBody()->getContents();
 				$keys = array_keys(self::$promises);
-				self::info("请求第 $index 个请求，key：".$keys[$index]." , result 为：" . $res);
+//				self::info("请求第 $index 个请求，key：".$keys[$index]." , result 为：" . $res);
 				self::$result[$keys[$index]] = $res;
 			},
 			'rejected'    => function ($reason, $index) {
