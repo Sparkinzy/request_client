@@ -80,11 +80,13 @@ class MultiRequest {
 				$res = $response->getBody()->getContents();
 				$keys = array_keys(self::$promises);
 //				self::info("请求第 $index 个请求，key：".$keys[$index]." , result 为：" . $res);
-				self::$result[$keys[$index]] = $res;
+				self::$result[$keys[$index]] = json_decode($res);
 			},
 			'rejected'    => function ($reason, $index) {
-				self::error("rejected");
-				self::error("rejected reason: " . $reason);
+				$keys = array_keys(self::$promises);
+				self::$result[$keys[$index]] = (object)['code'=>500,'msg'=>'error','data'=>$reason];
+//				self::error("rejected");
+//				self::error("rejected reason: " . $reason);
 			},
 		]);
 		
