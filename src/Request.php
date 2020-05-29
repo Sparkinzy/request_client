@@ -5,10 +5,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 class Request {
-	public static $gateway = '';
+    public static $gateway = '';
+    public static $timeout = 60;
 	public static $debug   = FALSE;
 	public static $ua      = 'from http request';
-	
+
 	/**
 	 * @param array $params
 	 *
@@ -20,9 +21,9 @@ class Request {
 		{
 			throw new \Exception('acion cannot be empty', '501');
 		}
-		
+
 	}
-	
+
 	/**
 	 * @param array $params
 	 *
@@ -40,9 +41,9 @@ class Request {
 		unset($params['action']);
 		$request_uri = '/' . str_replace('.', '/', $action);
 		return self::http($request_uri, $params, "GET");
-		
+
 	}
-	
+
 	/**
 	 * @param array $params
 	 *
@@ -61,7 +62,7 @@ class Request {
 		$request_uri = '/' . str_replace('.', '/', $action);
 		return self::http($request_uri, $params, "POST");
 	}
-	
+
 	/**
 	 * @param string $request_uri
 	 * @param array  $params
@@ -72,20 +73,20 @@ class Request {
 	 */
 	public static function http($request_uri = '', $params = array(), $method = 'GET')
 	{
-		
+
 		self::$gateway = rtrim(self::$gateway, '/');
 		$request_uri   = '/' . ltrim($request_uri, '/');
-		
+
 		$client = new Client([
 			'base_uri'        => self::$gateway,
-			'timeout'         => 60,
+			'timeout'         => self::$timeout,
 			'connect_timeout' => 2,
 			'debug'           => self::$debug,
 			'headers'         => [
 				'User-Agent' => self::$ua
 			]
 		]);
-		
+
 		$method = $method ?: 'GET';
 		$method = strtoupper($method);
 		try
@@ -101,7 +102,7 @@ class Request {
 					'form_params' => $params
 				]);
 			}
-			
+
 			if ($response->getStatusCode() === 200)
 			{
 				# 请求成功
@@ -116,9 +117,9 @@ class Request {
 			return (object)['code' => 666, 'msg' => $e->getMessage(), 'err' => $msg_r];
 		}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
